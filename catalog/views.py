@@ -28,5 +28,6 @@ def contacts(request):
     return render(request, 'main/contacts.html', context)
 
 
-def products(request):
-    return render(request, 'main/products.html')
+def product_detail(request, pk):
+    product = Product.objects.get(pk=pk)  # Получаем товар по его primary key
+    return render(request, 'main/product_detail.html', {'product': product})
