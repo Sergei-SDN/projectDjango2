@@ -29,5 +29,9 @@ def contacts(request):
 
 
 def product_detail(request, pk):
-    product = Product.objects.get(pk=pk)  # Получаем товар по его primary key
-    return render(request, 'main/product_detail.html', {'product': product})
+    product_item = Product.objects.get(pk=pk)
+    context = {
+        'object_list': Product.objects.filter(id=pk),
+        'title': f'SkyStore {product_item.name}'
+    }
+    return render(request, 'main/product_detail.html', context)
