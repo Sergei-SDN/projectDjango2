@@ -38,7 +38,8 @@ INSTALLED_APPS = [
 
     'Category',
     'Product',
-    'catalog'
+    'catalog',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 587  # порт для smtp.yandex.ru
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your_yandex_email@yandex.ru'  # почтовый ящик на Яндексе
+EMAIL_HOST_PASSWORD = 'your_yandex_password'  # пароль от почтового ящика на Яндексе
