@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-
-from Product.models import Product
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.forms import inlineformset_factory
+from Product.models import Product, Version
+from catalog.forms import ProductForm, VersionForm
 
 
 # Create your views here.
@@ -13,6 +15,11 @@ class HomeListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'SkyStore'
+        products = Product.objects.all()
+        active_versions = {}
+        for product in products:
+            active_versions[product] = Version.objects.filter(product=product, is_current=True).first()
+            context['active_versions'] = active_versions
         return context
 
 
@@ -57,3 +64,49 @@ class ProductDetailView(DetailView):
 #         'title': f'SkyStore {product_item.name}'
 #     }
 #     return render(request, 'catalog/product_detail.html', context)
+
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'catalog/product_form.html'
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:home')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    template_name = 'catalog/product_form.html'
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:home')
+
+
+class VersionCreateView(CreateView):
+    model = Version
+    template_name = 'catalog/version_form.html'
+    form_class = VersionForm
+    success_url = reverse_lazy('catalog:home')
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     products = Product.objects.all()
+    #     active_versions = {}
+    #     for product in products:
+    #         active_versions[product] = Version.objects.filter(product=product, is_current=True).first()
+    #     context['active_versions'] = active_versions
+    #     return context
+
+
+class VersionUpdateView(UpdateView):
+    model = Version
+    template_name = 'catalog/version_form.html'
+    form_class = VersionForm
+    success_url = reverse_lazy('catalog:home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ParentFormset = inlineformset_factory()
+
+        return context
+
+    def form_valid(self, form):
+
+        return super().form_valid(form)

@@ -26,6 +26,7 @@ class BlogCreateView(CreateView):
 
 class BlogListView(ListView):
     model = Blog
+    form_class = BlogForm
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
