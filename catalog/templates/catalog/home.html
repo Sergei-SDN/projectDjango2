@@ -17,7 +17,7 @@
 
     <div class="container">
         <div class="row text-center">
-            {% for object in object_list %}
+            {% for object, active_version in active_versions.items %}
                 <div class="col-3">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header">
@@ -30,8 +30,11 @@
                                 {#                        <img src="{% static object.image %}" class="img-fluid" alt="{{ object | title }}">#}
                                 <img src="{{ object.image | mediapath }}" class="img-fluid" alt="{{ object | title }}">
                                 <li>
-                                    {% if object.active_version %}
-                                        Version: {{ object.active_version }} - {{ active_version.version_name }}
+                                    {% if active_version %}
+                                        Version: {{ active_version.version_name }}
+                                        <li>
+                                            Version number: {{ active_version.version_number }}
+                                        </li>
                                     {% else %}
                                         No active version
                                     {% endif %}
@@ -41,8 +44,8 @@
                                class="btn btn-lg btn-block btn-outline-primary">View</a>
                             <a href="{% url 'catalog:update_product' object.pk %}" type="button"
                                class="btn btn-lg btn-block btn-outline-primary">Edit</a>
-{#                            <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:update_version' object.pk %}">Добавить#}
-{#                                версию продукта</a>#}
+                            {#                            <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:update_version' object.pk %}">Добавить#}
+                            {#                                версию продукта</a>#}
                         </div>
                     </div>
                 </div>
