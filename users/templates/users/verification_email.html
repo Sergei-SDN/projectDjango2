@@ -1,0 +1,21 @@
+{% extends 'catalog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Verify Email
+                        </div>
+                        <div class="card-body">
+                            <p>Thank you for registering! Please click the link below to verify your email:</p>
+                            <a href="{{ verification_link }}">Verify Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
