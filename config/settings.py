@@ -37,11 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
+    "crispy_bootstrap5",
 
     'Category',
     'Product',
     'catalog',
-    'blog'
+    'blog',
+    'users',
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'crispy_forms.middleware.CrispyMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -80,7 +84,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'projectDjango2',
+        'NAME': 'projectdjango2',
         'USER': 'postgres',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -142,4 +146,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'your_yandex_email@yandex.ru'  # почтовый ящик на Яндексе
 EMAIL_HOST_PASSWORD = 'your_yandex_password'  # пароль от почтового ящика на Яндексе
 
-CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+AUTH_USER_MODEL = 'users.CustomUser'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
