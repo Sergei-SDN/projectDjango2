@@ -1,3 +1,5 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -85,15 +87,6 @@ class VersionCreateView(CreateView):
     form_class = VersionForm
     success_url = reverse_lazy('catalog:home')
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     products = Product.objects.all()
-    #     active_versions = {}
-    #     for product in products:
-    #         active_versions[product] = Version.objects.filter(product=product, is_current=True).first()
-    #     context['active_versions'] = active_versions
-    #     return context
-
 
 class VersionUpdateView(UpdateView):
     model = Version
@@ -101,12 +94,17 @@ class VersionUpdateView(UpdateView):
     form_class = VersionForm
     success_url = reverse_lazy('catalog:home')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        ParentFormset = inlineformset_factory()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Save'))
 
-        return context
-
-    def form_valid(self, form):
-
-        return super().form_valid(form)
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     ParentFormset = inlineformset_factory()
+    #
+    #     return context
+    #
+    # def form_valid(self, form):
+    #     return super().form_valid(form)

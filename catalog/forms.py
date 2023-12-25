@@ -2,6 +2,9 @@ from django import forms
 
 from Product.models import Product, Version
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -14,8 +17,11 @@ class ProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Save'))
+        # for field_name, field in self.fields.items():
+        #     field.widget.attrs['class'] = 'form-control'
 
     def clean_name(self):
         name = self.cleaned_data['name']
@@ -42,7 +48,10 @@ class VersionForm(forms.ModelForm):
 
         fields = '__all__'
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Save'))
     #     for field_name, field in self.fields.items():
     #         field.widget.attrs['class'] = 'form-control'

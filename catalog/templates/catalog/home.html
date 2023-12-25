@@ -18,6 +18,12 @@
     <div class="container">
         <div class="row text-center">
             {% for object, active_version in active_versions.items %}
+{#                {% for version in object.version_set.all %}#}
+{#                    {% if version.is_active %}#}
+{#                        {{ version }}#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{#                Исправить на код в комментарии Лучше всё же получать версию непосредственно из продукта.#}
                 <div class="col-3">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header">

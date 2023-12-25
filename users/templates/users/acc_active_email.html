@@ -1,0 +1,21 @@
+{% extends 'catalog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <div class="card-title">
+                            {% autoescape off %}
+                                Hi {{ user.username }},
+                                Please click on the link to confirm your registration,
+                                http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}
+                            {% endautoescape %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

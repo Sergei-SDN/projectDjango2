@@ -8,15 +8,11 @@
                 <div class="card mb-4 box-shadow">
                     <div class="card-header">
                         <div class="card-title">
-                            Добавление продукта
+                            Verify Email
                         </div>
                         <div class="card-body">
-                            <form method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-{#                                {{ form.as_p }}#}
-                                {% crispy form %}
-{#                                <button type="submit" class="btn btn-success">Сохранить</button>#}
-                            </form>
+                            <p>Thank you for registering! Please click the link below to verify your email:</p>
+                            <a href="{{ verification_link }}">Verify Email</a>
                         </div>
                     </div>
                 </div>
