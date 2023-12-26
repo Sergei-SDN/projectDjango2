@@ -1,5 +1,6 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -67,28 +68,28 @@ class ProductDetailView(DetailView):
 #     }
 #     return render(request, 'catalog/product_detail.html', context)
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     template_name = 'catalog/product_form.html'
     form_class = ProductForm
     success_url = reverse_lazy('catalog:home')
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     template_name = 'catalog/product_form.html'
     form_class = ProductForm
     success_url = reverse_lazy('catalog:home')
 
 
-class VersionCreateView(CreateView):
+class VersionCreateView(LoginRequiredMixin, CreateView):
     model = Version
     template_name = 'catalog/version_form.html'
     form_class = VersionForm
     success_url = reverse_lazy('catalog:home')
 
 
-class VersionUpdateView(UpdateView):
+class VersionUpdateView(LoginRequiredMixin, UpdateView):
     model = Version
     template_name = 'catalog/version_form.html'
     form_class = VersionForm
