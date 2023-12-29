@@ -73,5 +73,5 @@ class ProfileView(UpdateView):
     form_class = UserProfileForm
     template_name = 'users/users_form.html'
 
-    # def get_object(self, queryset=None):
-    #     return self.request.user
+    def get_object(self, queryset=None):
+        return self.request.user
