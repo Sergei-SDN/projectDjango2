@@ -139,12 +139,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# EMAIL
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 587  # порт для smtp.yandex.ru
 EMAIL_USE_TLS = True
+
 EMAIL_HOST_USER = 'martyn8v@ya.ru'  # почтовый ящик на Яндексе
-EMAIL_HOST_PASSWORD = '**'  # пароль от почтового ящика на Яндексе
+EMAIL_HOST_PASSWORD = 'ippxrwuettnajtcz'  # пароль от почтового ящика на Яндексе
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
+
+# End EMAIL
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
