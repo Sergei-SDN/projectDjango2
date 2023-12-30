@@ -143,8 +143,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 587  # порт для smtp.yandex.ru
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'martyn8v@ya.ru'  # почтовый ящик на Яндексе
+EMAIL_HOST_USER = 'projectdango2@ya.ru'  # почтовый ящик на Яндексе
 EMAIL_HOST_PASSWORD = '**'  # пароль от почтового ящика на Яндексе
+
+EMAIL_SERVER = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
